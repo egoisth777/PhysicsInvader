@@ -41,7 +41,7 @@ public class AlienInvader : MonoBehaviour
     {
         if(dead) Destroy(gameObject);
 
-        transform.parent.gameObject.GetComponent<InvaderRowController>().InvaderDead();
+        transform.parent.gameObject.GetComponent<InvaderRowController>().InvaderDead(); 
         transform.parent = null;
         GameObject.Find("GlobalController").GetComponent<GlobalController>().IncreasePoint(point);
 
@@ -49,6 +49,8 @@ public class AlienInvader : MonoBehaviour
 
         dead = true;
 
+        // Set the child prefab to change color -> to death material
+        
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | 
             RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
         GetComponent<MeshRenderer>().sharedMaterial = DeadMaterial;
