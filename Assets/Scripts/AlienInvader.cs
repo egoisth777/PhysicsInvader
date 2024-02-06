@@ -51,7 +51,6 @@ public class AlienInvader : MonoBehaviour
 
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | 
             RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
-
         GetComponent<MeshRenderer>().sharedMaterial = DeadMaterial;
 
         GetComponent<Rigidbody>().useGravity = true;
