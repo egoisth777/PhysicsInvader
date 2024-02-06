@@ -155,7 +155,10 @@ public class GlobalController : MonoBehaviour
         }
         curPlayerShip = Instantiate(PlayerShip, PlayerShipInitPosition, Quaternion.identity) as GameObject;
     }
-
+    
+    /// <summary>
+    /// Generate the Game Doc for reading 
+    /// </summary>
     private void InitRocks()
     {
         for (int i = 0; i < rockList.Count; i++)
