@@ -117,7 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6226364917b76024d8eaddc8ca9346ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodeKnell: {fileID: 8300000, guid: 0a77161dcd193324a92c4ff0f8c04b32, type: 3}
+  explodeKnell: {fileID: 8300000, guid: f5d5cd782d01dd84a867cb111fcb8985, type: 3}
+  sfx_invaderDeath: {fileID: 8300000, guid: ba1ee4fe46750154d94e425bf7e03df2, type: 3}
   explodeEffect: {fileID: 906585140960031543, guid: 5579ac73a0568ae4d88aa9c2977852a8, type: 3}
   DeadMaterial: {fileID: 2100000, guid: eab387ecf8c76a94cb74700ebd94d881, type: 2}
 --- !u!65 &2735189729946574902

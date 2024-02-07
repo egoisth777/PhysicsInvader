@@ -44,7 +44,8 @@ public class AlienInvader : MonoBehaviour
         transform.parent.gameObject.GetComponent<InvaderRowController>().InvaderDead(); 
         transform.parent = null;
         GameObject.Find("GlobalController").GetComponent<GlobalController>().IncreasePoint(point);
-
+        // increase the number of the enemy taken down
+        GameObject.Find("GlobalController").GetComponent<GlobalController>().IncreaseEnemyTakenDown();
         //Destroy(gameObject);
 
         dead = true;

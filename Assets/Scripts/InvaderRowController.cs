@@ -18,7 +18,7 @@ public class InvaderRowController : MonoBehaviour
     public float horizontalLimit;
     public float moveLimit;
 
-    public GameObject[] alienInvaders;
+    public GameObject[] alienInvaders; // controll all the invaders in the game
     public List<LinkedList<GameObject>> invadersLinkedLists;
 
     public List<float> leftLimits;

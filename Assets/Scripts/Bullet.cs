@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody rigidBody;
 
     public AudioClip explodeKnell;
+    public AudioClip sfx_invaderDeath;
     public GameObject explodeEffect;
 
     public Material DeadMaterial;
@@ -61,6 +62,8 @@ public class Bullet : MonoBehaviour
         }
         else if(collider.CompareTag("AlienInvader"))
         {
+            Debug.Log("I am entered");
+            AudioSource.PlayClipAtPoint(sfx_invaderDeath, gameObject.transform.position);
             collider.gameObject.GetComponent<AlienInvader>().OnDead();
         }
         else if(collider.CompareTag("Rock"))

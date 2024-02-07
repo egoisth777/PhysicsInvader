@@ -26,6 +26,7 @@ public class PlayerShip : MonoBehaviour
     private GlobalController globalController;
 
     private FixedJoystick joystick;
+    public AudioClip sfx_ShootGun;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,9 @@ public class PlayerShip : MonoBehaviour
         cooldown = false;
     }
 
+    /// <summary>
+    /// Input Controller of the Ship
+    /// </summary>
     void FixedUpdate()
     {
         float axis_raw_input = joystick.Horizontal;// Input.acceleration.x;
@@ -71,6 +75,9 @@ public class PlayerShip : MonoBehaviour
     public void OnShoot()
     {
         if (cooldown || !globalController.DecreaseBullet()) return;
+
+        // Play the Audio Clip (Shoot gun fired)
+        AudioSource.PlayClipAtPoint(sfx_ShootGun, gameObject.transform.position);
 
         Vector3 spawnPos = gameObject.transform.position + new Vector3(0.0f, 0.0f, 0.7f);
         // instantiate the Bullet

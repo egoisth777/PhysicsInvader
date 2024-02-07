@@ -8,12 +8,17 @@ using UnityEngine.SceneManagement;
 
 public class GlobalController : MonoBehaviour
 {
-    [Header("Global")]
-    public bool isGameOver;
 
-    [Header("Player Ship")]
-    private GameObject curPlayerShip;
+    /// <summary>
+    /// For Global music playing 
+    /// </summary>
+    
+    
+    [Header("Global")] public bool isGameOver;
 
+    [Header("Player Ship")] private GameObject curPlayerShip;
+    public int EnemyTakenDown; // default to be 0, the enemy taken down
+    
     public int InitLife;
     private int RemainingLife;
     public int PlayerScore;
@@ -26,8 +31,7 @@ public class GlobalController : MonoBehaviour
     private int bulletCount;
     private Text BulletText;
 
-    [Header("Alien Invader")]
-    public GameObject AlienUFO;
+    [Header("Alien Invader")] public GameObject AlienUFO;
     private GameObject currentUFO;
 
     public Vector3 UFOInitPos;
@@ -35,8 +39,7 @@ public class GlobalController : MonoBehaviour
     public GameObject[] AlienInvaders;
     public float alienMoveSpeed;
 
-    [Header("Rocks")]
-    public GameObject Rock;
+    [Header("Rocks")] public GameObject Rock;
     public int rockCount;
     public Vector3 rockInitPos;
     public float rockInterval;
@@ -45,14 +48,14 @@ public class GlobalController : MonoBehaviour
     // private memebers
     private LifeIcons lifeIcons;
     private Text GameOverText;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         lifeIcons = GameObject.FindObjectOfType<LifeIcons>();
         GameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
         rockList = new List<GameObject>();
-        scoreGUI = GameObject.Find("PlayerScore").GetComponent<Text>(); 
+        scoreGUI = GameObject.Find("PlayerScore").GetComponent<Text>();
         BulletText = GameObject.Find("RemainingBullet").GetComponent<Text>();
         OnGameStart();
     }
@@ -60,11 +63,11 @@ public class GlobalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F12))
+        if (Input.GetKeyDown(KeyCode.F12))
         {
             Reset();
         }
-        else if(Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
@@ -78,7 +81,7 @@ public class GlobalController : MonoBehaviour
     public void OnGameOver()
     {
         // TODO: Display "GameOver"
-        if(!isGameOver)
+        if (!isGameOver)
         {
             isGameOver = true;
             GameOverText.text = "Game Over";
@@ -97,13 +100,19 @@ public class GlobalController : MonoBehaviour
             Invoke("BackToStartScreen", 5.0f);
         }
     }
+    private void setUltButton()
+    {
+        GameObject Ultbutton = GameObject.Find("UltButton"); // Get the Ultimate button
+        
+    }
 
-    public void Reset()
+public void Reset()
     {
         ClearAll();
 
         CancelInvoke("BackToStartScreen");
-
+        // Set the Enemy taken down
+        EnemyTakenDown = 0;
         isGameOver = false;
         GameOverText.text = "";
         GameObject.Find("InvaderController").GetComponent<InvaderRowController>().Reset();
@@ -230,9 +239,12 @@ public class GlobalController : MonoBehaviour
         SceneManager.LoadScene("StartScreen");
     }
 
+    /// <summary>
+    /// Increase the current bullet in the game
+    /// </summary>
     public void IncreaseBullet()
     {
-        ++bulletCount;
+        bulletCount += 3;
         BulletText.text = bulletCount.ToString();
     }
 
@@ -244,6 +256,16 @@ public class GlobalController : MonoBehaviour
         BulletText.text = bulletCount.ToString();
         return true;
     }
+
+    /// <summary>
+    /// Simply Increase the enemy taken down by the bullet, which is related to the ultimate ability
+    /// </summary>
+    /// <returns></returns>
+    public void IncreaseEnemyTakenDown()
+    {
+        EnemyTakenDown++;
+    }
+    
     public void Restart()
     {
         Reset();
