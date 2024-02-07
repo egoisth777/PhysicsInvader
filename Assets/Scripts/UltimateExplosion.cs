@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UltimateExplosion : MonoBehaviour
 {
+    public AudioClip clip1;
+    public AudioClip clip2;
     public GameObject ultimateExplosion; // the explosion particle system for generation
     
     // Start is called before the first frame update
@@ -18,9 +20,13 @@ public class UltimateExplosion : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Generate explosion at certain point
+    /// </summary>
     public void generateExplosion()
     {
-        Instantiate(ultimateExplosion);
+        AudioSource.PlayClipAtPoint(clip1, gameObject.transform.position);
+        AudioSource.PlayClipAtPoint(clip2, gameObject.transform.position);
+        Instantiate(ultimateExplosion, transform.position, transform.rotation, transform);
     }
-
 }

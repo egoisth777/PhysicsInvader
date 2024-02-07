@@ -13,7 +13,6 @@ public class GlobalController : MonoBehaviour
     /// For Global music playing 
     /// </summary>
     
-    
     [Header("Global")] public bool isGameOver;
 
     [Header("Player Ship")] private GameObject curPlayerShip;
@@ -23,6 +22,11 @@ public class GlobalController : MonoBehaviour
     private int RemainingLife;
     public int PlayerScore;
     public Text scoreGUI;
+    
+    
+    // Player kill and killGUI instantiation
+    public int PlayerKill;
+    public Text killGUI;
 
     public Vector3 PlayerShipInitPosition;
     public GameObject PlayerShip;
@@ -190,8 +194,10 @@ public void Reset()
 
     public void IncreasePoint(int point)
     {
+        PlayerKill += 1;
         PlayerScore += point;
 
+        killGUI.text = PlayerKill.ToString();
         scoreGUI.text = PlayerScore.ToString();
     }
 
